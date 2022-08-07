@@ -1,34 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 課題内容
 
-## Getting Started
+Figma のデザインを参考に、Todo の作成を行う。
 
-First, run the development server:
+ディレクトリ構造は本番を想定して作る。
 
-```bash
-npm run dev
-# or
-yarn dev
+eslint、prettier に関しては導入必須で、設定方法は自由。
+
+テストは余裕があれば書く。
+
+その他のツールに関しては任意。なお、MUI や ChakraUI などの UI ライブラリの使用は禁止。
+
+# 仕様
+
+デザインは[こちら](https://www.figma.com/file/9mSTr7E2cg5xs7Qr0WzpML/Web%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88-%E8%AA%B2%E9%A1%8C?node-id=0%3A1)
+
+- 機能要件
+
+  - デザインに合わせて Todo アプリの UI を構築する
+  - Todo の取得 / 追加 / 削除を json-server と連携して実装する
+
+- プロジェクトの立ち上げ方
+  - `yarn install` で依存関係をインストール
+  - `yarn dev` で開発サーバーを立ち上げる
+  - `yarn json-server` でモックサーバーを立ち上げる
+
+# TodoAPI に関しては以下
+
+Todo エンドポイント -> http://localhost:5000/todos
+
+型に関して
+
+```
+Todo = {
+  id: number,
+  title: string;
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+※id に関しては自動インクリメント
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+| メソッド | リクエストボディ        | URL         | レスポンス               |
+| -------- | ----------------------- | ----------- | ------------------------ |
+| Get      | なし                    | /todos      | Todo[]                   |
+| Post     | body: { title: string } | /todos      | Todo                     |
+| Delete   | なし                    | /todos/[id] | {} （※空のオブジェクト） |
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+# 技術に関して
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+React / Next.js を使用して作成してください。
 
-## Learn More
+CSS や API のライブラリに関しては自由にインストールしていただいて大丈夫です。
 
-To learn more about Next.js, take a look at the following resources:
+# 期限
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+１週間以内にご自身の GitHub にあげたものを提出してください。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# その他
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+もし仕様などに関する質問があれば、いつでも質問してください。
