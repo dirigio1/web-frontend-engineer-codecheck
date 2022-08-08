@@ -18,6 +18,8 @@ eslint、prettier に関しては導入必須で、設定方法は自由。
 
   - デザインに合わせて Todo アプリの UI を構築する
   - Todo の取得 / 追加 / 削除を json-server と連携して実装する
+  - Todo の未完了 / 完了を切り替える機能を json-server と連携して実装する
+  - Todo の編集を json-server と連携して実装する
 
 - プロジェクトの立ち上げ方
   - `yarn install` で依存関係をインストール
@@ -34,16 +36,19 @@ Todo エンドポイント -> http://localhost:5000/todos
 Todo = {
   id: number,
   title: string;
+  isDone: boolean;
 }
 ```
 
 ※id に関しては自動インクリメント
 
-| メソッド | リクエストボディ        | URL         | レスポンス               |
-| -------- | ----------------------- | ----------- | ------------------------ |
-| Get      | なし                    | /todos      | Todo[]                   |
-| Post     | body: { title: string } | /todos      | Todo                     |
-| Delete   | なし                    | /todos/[id] | {} （※空のオブジェクト） |
+| メソッド | リクエストボディ                       | URL         | レスポンス               |
+| -------- | -------------------------------------- | ----------- | ------------------------ |
+| Get      | なし                                   | /todos      | Todo[]                   |
+| Post     | body: { title: string, isDone: false } | /todos      | Todo                     |
+| Put      | body: { title: string, isDone: false } | /todos/[id] | Todo                     |
+| Patch    | body: { isDone: boolean }              | /todos/[id] | Todo                     |
+| Delete   | なし                                   | /todos/[id] | {} （※空のオブジェクト） |
 
 # 技術に関して
 
